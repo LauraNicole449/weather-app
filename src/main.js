@@ -1,24 +1,19 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector('#counter'))
+const url = 'https://open-weather13.p.rapidapi.com/city/landon/EN';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'a18ebc26e5mshba569ca3bf9fb2fp1ebfd6jsnb3499cee31d4',
+		'X-RapidAPI-Host': 'open-weather13.p.rapidapi.com'
+	}
+};
+const cities = ["alicante", "valencia", "madrid"]
+for (const city of cities) {
+const url = `https://open-weather13.p.rapidapi.com/city/${city}/es`
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
